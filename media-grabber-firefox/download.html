@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Media Grabber – Téléchargement HLS</title>
+<style>
+  :root { color-scheme: light dark; --bd: #8884; --muted: #888; --accent: #2563eb; --err: #dc2626; --ok: #16a34a; }
+  body { max-width: 640px; margin: 32px auto; padding: 0 16px; font: 14px/1.5 system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  .src { color: var(--muted); font-size: 12px; word-break: break-all; margin-bottom: 20px; }
+  label { display: block; font-weight: 500; margin: 14px 0 4px; }
+  select, input[type=text] { width: 100%; box-sizing: border-box; padding: 6px 8px; font: inherit; border: 1px solid var(--bd); border-radius: 6px; background: transparent; color: inherit; }
+  .info { margin: 14px 0; padding: 10px 12px; border: 1px solid var(--bd); border-radius: 8px; min-height: 20px; }
+  .warn { color: #b45309; margin-top: 6px; }
+  .error { color: var(--err); }
+  .ok { color: var(--ok); }
+  button { font: inherit; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--bd); background: transparent; color: inherit; cursor: pointer; margin-right: 8px; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  progress { width: 100%; height: 14px; margin-top: 16px; }
+  #stats { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <h1>Téléchargement HLS</h1>
+  <div class="src" id="src"></div>
+
+  <div id="variantBox" class="hidden">
+    <label for="variant">Qualité</label>
+    <select id="variant"></select>
+  </div>
+
+  <label for="format">Format de sortie</label>
+  <select id="format" disabled></select>
+
+  <label for="filename">Nom du fichier</label>
+  <input type="text" id="filename">
+
+  <div class="info" id="info">Analyse en cours…</div>
+
+  <button class="primary" id="start" disabled>Télécharger</button>
+  <button id="cancel" class="hidden">Annuler</button>
+
+  <progress id="bar" class="hidden" value="0" max="1"></progress>
+  <div id="stats"></div>
+
+  <script src="lib/mux-mp4.min.js"></script>
+  <script src="mp4build.js"></script>
+  <script src="hls.js"></script>
+  <script src="download.js"></script>
+</body>
+</html>
